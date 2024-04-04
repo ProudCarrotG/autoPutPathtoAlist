@@ -1,0 +1,9 @@
+FILES_PATH = ''
+
+ALIST_SERVER = '127.0.0.1'
+
+ALIST_PORT = '5244'
+
+ALIST_PATH = '/115网盘_最大文件5GB/api测试/'
+
+ALIST_TOKEN = ''
