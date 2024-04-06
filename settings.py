@@ -1,10 +1,10 @@
-FILES_PATH = ''
+FILES_PATH = '/'
 
 ALIST_HTTPS = 0
 ALIST_SERVER = 'localhost'
 ALIST_PORT = '5244'
 
-ALIST_PATH = 'guest/'
+ALIST_PATH = '/test23'
 
 
 # TOKEN的优先级更高
