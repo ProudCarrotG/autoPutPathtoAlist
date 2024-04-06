@@ -3,8 +3,8 @@ Host: 127.0.0.1:5244
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "ProudCarrot123"
+  "username": "admin",
+  "password": "ProudCarrot123"
 }
 
 
@@ -18,3 +18,12 @@ Content-Type: application/octet-stream
 {
     "username"
 }
+
+###
+GET /api/me HTTP/1.1
+Host: 127.0.0.1:5244
+Authorization: edJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicHdkX3RzIjoxNzA1OTI4NzUyLCJleHAiOjE3MTI0MTAzNDgsIm5iZiI6MTcxMjIzNzU0OCwiaWF0IjoxNzEyMjM3NTQ4fQ.fSIBuDQ58EBj8wOI-YeIpSgsEWrHer133MdZejvN6_oJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicHdkX3RzIjoxNzA1OTI4NzUyLCJleHAiOjE3MTI0MTAzNDgsIm5iZiI6MTcxMjIzNzU0OCwiaWF0IjoxNzEyMjM3NTQ4fQ.fSIBuDQ58EBj8wOI-YeIpSgsEWrHer133MdZejvN6_o
+
+###
+GET /ping HTTP/1.1
+Host: 127.0.0.1:5244

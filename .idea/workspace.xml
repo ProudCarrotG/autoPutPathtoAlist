@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="添加readme">
+    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="添加requrements">
+      <change afterPath="$PROJECT_DIR$/config/Config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/config_check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myError/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myError/error_check_alist_token.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.http" beforeDir="false" afterPath="$PROJECT_DIR$/api.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +25,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTTP Request" />
         <option value="Setup Script" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -27,9 +37,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2edXsGuZt1geZZ34Uhbngz8E4ST" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -40,26 +50,39 @@
   "keyToString": {
     "HTTP 请求.api | #1.executor": "Run",
     "HTTP 请求.api | #2.executor": "Run",
+    "HTTP 请求.api | #3.executor": "Run",
+    "HTTP 请求.api | #4.executor": "Run",
     "HTTP 请求.api中的所有.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/myProject/autoPutPathtoAlist/main.py",
+    "last_opened_file_path": "D:/myProject/MihoyoBBSTools",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\myProject\autoPutPathtoAlist\" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="api | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api.http" requestIdentifier="#1" runType="运行单个请求">
       <method v="2" />
     </configuration>
     <configuration name="api | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api.http" index="2" requestIdentifier="#2" runType="运行单个请求">
+      <method v="2" />
+    </configuration>
+    <configuration name="api | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api.http" index="3" requestIdentifier="#3" runType="运行单个请求">
+      <method v="2" />
+    </configuration>
+    <configuration name="api | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api.http" index="4" requestIdentifier="#4" runType="运行单个请求">
       <method v="2" />
     </configuration>
     <configuration name="api中的所有" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/api.http">
@@ -90,6 +113,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="HTTP 请求.api | #3" />
+      <item itemvalue="HTTP 请求.api | #4" />
       <item itemvalue="HTTP 请求.api | #1" />
       <item itemvalue="HTTP 请求.api | #2" />
       <item itemvalue="HTTP 请求.api中的所有" />
@@ -97,6 +122,8 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP 请求.api | #4" />
+        <item itemvalue="HTTP 请求.api | #3" />
         <item itemvalue="HTTP 请求.api | #2" />
         <item itemvalue="HTTP 请求.api | #1" />
         <item itemvalue="HTTP 请求.api中的所有" />
@@ -118,7 +145,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712235633661</updated>
-      <workItem from="1712235642245" duration="9735000" />
+      <workItem from="1712235642245" duration="10762000" />
+      <workItem from="1712294310839" duration="25854000" />
     </task>
     <task id="LOCAL-00001" summary="添加readme">
       <option name="closed" value="true" />
@@ -128,7 +156,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712247659091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="添加requrements">
+      <option name="closed" value="true" />
+      <created>1712249111525</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712249111525</updated>
+    </task>
+    <task id="LOCAL-00003" summary="添加requrements">
+      <option name="closed" value="true" />
+      <created>1712249243266</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712249243266</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,9 +191,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="添加readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加readme" />
+    <MESSAGE value="添加requrements" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加requrements" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712242108679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712382669526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
