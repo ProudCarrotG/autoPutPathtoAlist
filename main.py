@@ -50,7 +50,7 @@ if __name__ == "__main__":
                  files)
 
     # upload_file(
-    #     path="settings.py",
+    #     path="test_settings.py",
     #     settings=setting
     # )
 

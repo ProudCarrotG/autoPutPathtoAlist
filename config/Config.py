@@ -4,7 +4,7 @@ from importlib import import_module
 
 import requests
 
-from .config_check import check_alist_addr, check_token
+from config.config_check import check_alist_addr, check_token
 
 logger = logging.getLogger(__name__)
 
@@ -49,10 +49,15 @@ class Config:
         读取settings.py
         :return:
         """
-        module = import_module("settings")
+        try:
+            module = import_module("settings")
+        except Exception as e:
+            logger.error(e)
+            module = import_module("test_settings")
         for key in dir(module):
             if key.isupper():
                 self.setting[key] = getattr(module, key)
+
 
         self.config_check()
         # self.print_config()

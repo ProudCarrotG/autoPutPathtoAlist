@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="清楚冗余文件">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="区分用户配置与开发配置">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/Config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +61,7 @@
     "HTTP 请求.api | #4.executor": "Run",
     "HTTP 请求.api | #5.executor": "Run",
     "HTTP 请求.api中的所有.executor": "Run",
+    "Python.Config.executor": "Run",
     "Python.main.executor": "Run",
     "Python.path_spliter.executor": "Run",
     "Python.traverse_files_path.executor": "Run",
@@ -77,9 +81,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\myProject\autoPutPathtoAlist\" />
       <recent name="D:\myProject\autoPutPathtoAlist\util" />
       <recent name="D:\myProject\autoPutPathtoAlist\file_controller" />
-      <recent name="D:\myProject\autoPutPathtoAlist\" />
     </key>
   </component>
   <component name="RunManager">
@@ -156,7 +160,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712235633661</updated>
       <workItem from="1712235642245" duration="10762000" />
-      <workItem from="1712294310839" duration="56737000" />
+      <workItem from="1712294310839" duration="58644000" />
     </task>
     <task id="LOCAL-00001" summary="添加readme">
       <option name="closed" value="true" />
@@ -214,7 +218,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712481086344</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="更新.gitigonor">
+      <option name="closed" value="true" />
+      <created>1712482057487</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712482057487</updated>
+    </task>
+    <task id="LOCAL-00009" summary="区分用户配置与开发配置">
+      <option name="closed" value="true" />
+      <created>1712483698252</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712483698252</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,11 +258,14 @@
     <MESSAGE value="完成上传单个文件操作" />
     <MESSAGE value="完成批量上传文件" />
     <MESSAGE value="清楚冗余文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="清楚冗余文件" />
+    <MESSAGE value="更新.gitigonor" />
+    <MESSAGE value="区分用户配置与开发配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="区分用户配置与开发配置" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712480161530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712483112367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$upload_file.coverage" NAME="upload_file 覆盖结果" MODIFIED="1712479744066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/file_controller" />
+    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$Config.coverage" NAME="Config 覆盖结果" MODIFIED="1712483002249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/config" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$traverse_files_path.coverage" NAME="traverse_files_path 覆盖结果" MODIFIED="1712479408380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/file_controller" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$path_spliter.coverage" NAME="path_spliter 覆盖结果" MODIFIED="1712475469770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
   </component>
