@@ -16,7 +16,7 @@ if __name__ == "__main__":
     # 日志
     import logging, coloredlogs
 
-    coloredlogs.install(level=logging.DEBUG, stream=sys.stdout)
+    coloredlogs.install(level=logging.INFO, stream=sys.stdout)
 
     # 读取设置
     config = config.Config.Config()

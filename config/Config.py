@@ -58,7 +58,6 @@ class Config:
             if key.isupper():
                 self.setting[key] = getattr(module, key)
 
-
         self.config_check()
         # self.print_config()
 

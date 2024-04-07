@@ -91,5 +91,3 @@ def upload_files(addr: str, token: str, alist_path: str, file_root: str, files: 
     for file in files:
         upload_file(addr, token, alist_path, file_root, file)
     return
-
-
