@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="完成上传单个文件操作">
-      <change afterPath="$PROJECT_DIR$/file_controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file_controller/traverse_files_path.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/ceshi/aaa" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util/path_spliter.py" afterDir="false" />
+    <list default="true" id="98e0f236-1e95-4efc-9ada-f4a9141fb8cf" name="更改" comment="完成批量上传文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/Config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_controller/upload_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/123" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/12345" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/ceshi/aaa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myError/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myError/error_check_alist_token.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +29,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ProudCarrotG"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="e57b2726-c5c8-4bc2-98fd-fe28a0d9d970" />
+        <option name="url" value="https://github.com/ProudCarrotG/autoPutPathtoAlist.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,7 +162,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712235633661</updated>
       <workItem from="1712235642245" duration="10762000" />
-      <workItem from="1712294310839" duration="55117000" />
+      <workItem from="1712294310839" duration="56015000" />
     </task>
     <task id="LOCAL-00001" summary="添加readme">
       <option name="closed" value="true" />
@@ -192,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712397381971</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="完成批量上传文件">
+      <option name="closed" value="true" />
+      <created>1712480203760</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712480203760</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,10 +234,11 @@
     <MESSAGE value="添加requrements" />
     <MESSAGE value="完成获取用户设置" />
     <MESSAGE value="完成上传单个文件操作" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成上传单个文件操作" />
+    <MESSAGE value="完成批量上传文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成批量上传文件" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712480099731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoPutPathtoAlist$main.coverage" NAME="main 覆盖结果" MODIFIED="1712480161530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$upload_file.coverage" NAME="upload_file 覆盖结果" MODIFIED="1712479744066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/file_controller" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$traverse_files_path.coverage" NAME="traverse_files_path 覆盖结果" MODIFIED="1712479408380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/file_controller" />
     <SUITE FILE_PATH="coverage/autoPutPathtoAlist$path_spliter.coverage" NAME="path_spliter 覆盖结果" MODIFIED="1712475469770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
