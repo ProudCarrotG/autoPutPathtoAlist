@@ -36,8 +36,10 @@ def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_pat
     else:
         try:
             logging.info(f"开始上传文件{file_abspath}")
-            res = requests.put(url=url, files=open(file_abspath, 'rb'), headers=header)
-            # logging.debug(file_path)
+            # with open(file_abspath, 'rb') as file:
+            # logging.debug(file.read())
+            res = requests.put(url=url, data=open(file_abspath, 'rb'), headers=header)
+            logging.debug(file_path)
             if res.json()['code'] == 200:
                 logging.info(f"文件上传成功{file_abspath}")
             else:
