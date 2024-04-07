@@ -10,6 +10,3 @@ def traverse_files_path(file_path: str) -> []:
             res.append(path[len(file_path) + 1::])
     return res
 
-
-if __name__ == '__main__':
-    print(traverse_files_path('..\\files'))

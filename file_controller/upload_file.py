@@ -93,28 +93,3 @@ def upload_files(addr: str, token: str, alist_path: str, file_root: str, files: 
     return
 
 
-if __name__ == '__main__':
-    import logging, coloredlogs
-
-    coloredlogs.install(level=logging.DEBUG, stream=sys.stdout)
-
-    files = ['123', '12345', 'ceshi\\aaa', 'ceshi\\bbb\\aaa']
-    upload_files('http://127.0.0.1:5244',
-                 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFwaXRlc3QiLCJwd2RfdHMiOjE3MTIzODg3MTMsImV4cCI6MTcxMjU2MTY4MywibmJmIjoxNzEyMzg4ODgzLCJpYXQiOjE3MTIzODg4ODN9.v6zjWj1Z8ZwLC8cxPcQss3KdWML3fjs-4oYz5heRuk8',
-                 '\\',
-                 '..\\files',
-                 files=files
-                 )
-
-    # get_file('http://127.0.0.1:5244',
-    #          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFwaXRlc3QiLCJwd2RfdHMiOjE3MTIzODg3MTMsImV4cCI6MTcxMjU2MTY4MywibmJmIjoxNzEyMzg4ODgzLCJpYXQiOjE3MTIzODg4ODN9.v6zjWj1Z8ZwLC8cxPcQss3KdWML3fjs-4oYz5heRuk8',
-    #          '\\',
-    #          '123')
-    #
-    # # res = ''
-    # upload_file('http://127.0.0.1:5244',
-    #             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFwaXRlc3QiLCJwd2RfdHMiOjE3MTIzODg3MTMsImV4cCI6MTcxMjU2MTY4MywibmJmIjoxNzEyMzg4ODgzLCJpYXQiOjE3MTIzODg4ODN9.v6zjWj1Z8ZwLC8cxPcQss3KdWML3fjs-4oYz5heRuk8',
-    #             '\\',
-    #             '..\\files',
-    #             '123'
-    #             )
