@@ -42,7 +42,7 @@ class Config:
         self.setting["ALIST_USERNAME"] = ""
         self.setting["ALIST_PASSWORD"] = ""
 
-        self.print_config()
+        # self.print_config()
 
     def get_config_by_settings(self):
         """
@@ -55,7 +55,7 @@ class Config:
                 self.setting[key] = getattr(module, key)
 
         self.config_check()
-        self.print_config()
+        # self.print_config()
 
     def print_config(self):
         """

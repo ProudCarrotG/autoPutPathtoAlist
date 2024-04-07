@@ -1,7 +1,8 @@
 import json
 import sys
 import config.Config
-from upload_file import get_file, upload_file
+from file_controller.traverse_files_path import traverse_files_path
+from file_controller.upload_file import upload_files
 
 
 def pretty_json(data):
@@ -43,7 +44,10 @@ if __name__ == "__main__":
     config = config.Config.Config()
     config.get_config_by_settings()
 
-    upload_file(config, "./files/12345")
+    files = traverse_files_path(config[config.FILES_PATH])
+    logging.debug(config[config.FILES_PATH])
+    upload_files(config.get_addr(), config[config.ALIST_TOKEN], config[config.ALIST_PATH], config[config.FILES_PATH],
+                 files)
 
     # upload_file(
     #     path="settings.py",
