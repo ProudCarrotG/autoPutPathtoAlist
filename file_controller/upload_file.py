@@ -1,13 +1,8 @@
 import logging
 import os.path
-import sys
 import urllib.parse
-from time import time
 
 import requests
-
-from config.Config import Config
-from util.path_spliter import path_adder
 
 
 def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_path: str):
