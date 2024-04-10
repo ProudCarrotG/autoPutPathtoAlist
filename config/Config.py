@@ -50,10 +50,10 @@ class Config:
         :return:
         """
         try:
-            module = import_module("settings")
+            module = import_module("test_settings")
         except Exception as e:
             logger.error(e)
-            module = import_module("test_settings")
+            module = import_module("settings")
         for key in dir(module):
             if key.isupper():
                 self.setting[key] = getattr(module, key)
@@ -148,7 +148,8 @@ class Config:
                 sys.exit(400)
         except Exception as e:
             logger.error(e)
-            logger.error("连接服务器失败")
+            logger.error("验证用户信息时，连接服务器失败")
+            logger.info("出现此条信息时，请检查服务器域名最后有没有多余的'/'")
             sys.exit(404)
 
         self[self.ALIST_TOKEN] = res.json()["data"]["token"]

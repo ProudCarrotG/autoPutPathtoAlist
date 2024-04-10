@@ -1,8 +1,42 @@
+import copy
 import logging
 import os.path
+import sys
+import time
 import urllib.parse
+from typing import Union, IO
 
 import requests
+import requests_toolbelt
+import tqdm
+
+
+# def foo(a) :
+
+
+class Callback:
+    def __init__(self):
+        self.pbar: Union[tqdm.tqdm, None] = None
+        self.last_read = 0
+
+    def __call__(self, monitor):
+        if self.pbar is None:
+            self.pbar = tqdm.tqdm(
+                total=monitor.len,
+                mininterval=0.01,
+                colour="blue",
+                unit_scale=True,
+                unit="b",
+            )
+            self.pbar.set_description("文件上传进度")
+        if monitor.bytes_read - self.last_read != 0:
+            self.pbar.update(monitor.bytes_read - self.last_read)
+        self.last_read = monitor.bytes_read
+
+    def __del__(self):
+        pass
+        # if not self.pbar:
+        #     self.pbar.close()
 
 
 def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_path: str):
@@ -16,30 +50,42 @@ def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_pat
     :return:
     """
 
-    url = addr + '/api/fs/put'
+    url = addr + "/api/fs/form"
     file_abspath = os.path.abspath(os.path.join(file_root, file_path))
     # logging.debug(f"path_adder(file_root,file_path):{path_adder(file_root, file_path)}")
     file_name = os.path.split(file_path)[1]
-
-    header = {
-        'Authorization': token,
-        'File-Path': f"{urllib.parse.quote(os.path.join(alist_path, file_path))}"
-    }
 
     if get_file(addr, token, alist_path, file_path):
         logging.warning("alist服务器上存在同路径同名文件")
     else:
         try:
             logging.info(f"开始上传文件{file_abspath}")
-            # with open(file_abspath, 'rb') as file:
-            # logging.debug(file.read())
-            res = requests.put(url=url, data=open(file_abspath, 'rb'), headers=header)
+            with open(file_abspath, "rb") as file:
+                e = requests_toolbelt.MultipartEncoder(
+                    fields={"file": (file_name, file)}
+                )
+                m = requests_toolbelt.MultipartEncoderMonitor(
+                    e,
+                    Callback(),
+                )
+                header = {
+                    "Authorization": token,
+                    "File-Path": f"{urllib.parse.quote(os.path.join(alist_path, file_path))}",
+                    "Content-Type": m.content_type,
+                    "Content-Length": str(os.path.getsize(file_abspath)),
+                    "As-Task": "true",
+                }
+                # file_controller.upload_file.finish = 0
+                res = requests.put(url=url, data=m, headers=header)
+
             logging.debug(file_path)
-            if res.json()['code'] == 200:
+
+            if res.json()["code"] == 200:
                 logging.info(f"文件上传成功{file_abspath}")
             else:
                 logging.warning(f"文件上传失败{file_abspath}")
                 logging.warning(res.json())
+
         except Exception as e:
             logging.error("服务器失效")
             logging.error(e)
@@ -54,25 +100,21 @@ def get_file(addr: str, token: str, alist_path: str, file_path: str):
     :param file_path: 服务器上的文件相对路径
     :return: 是否查询到
     """
-    url = addr + '/api/fs/get'
+    url = addr + "/api/fs/get"
     path = os.path.join(alist_path, file_path)
     logging.debug(alist_path)
     logging.debug(file_path)
     logging.debug(f"path:{path}")
 
-    header = {
-        'Authorization': token
-    }
-    body = {
-        'path': path
-    }
+    header = {"Authorization": token}
+    body = {"path": path}
 
     try:
         res = requests.post(url=url, json=body, headers=header)
-        if res.json()['code'] == 500:
+        if res.json()["code"] == 500:
             logging.warning(f"未能在alist服务器上查询到文件{path}")
             return False
-        elif res.json()['code'] == 200:
+        elif res.json()["code"] == 200:
             logging.info(f"成功查询到文件{path}")
             return True
         else:
