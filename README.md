@@ -1,5 +1,15 @@
 自动将目录下的文件全部上传到alist的指定路径
 
+# 运行
+先配置setting.py文件
+```python
+# 安装依赖项
+pip install -r requirements.txt
+
+# 运行
+python main.py
+```
+
 # TODO
 
 | 状态 | 功能                                                 |
