@@ -22,3 +22,7 @@ ALIST_PATH = '\\'
 ALIST_USERNAME = ''
 ALIST_PASSWORD = ''
 ALIST_TOKEN = ''
+
+# 用户设置的超时时间，默认为None
+# 如果不设置超时时间，当与服务器传输文件时服务器未响应，程序会一直等待服务器响应，可能会产生卡死
+# USER_TIMEOUT = 10
