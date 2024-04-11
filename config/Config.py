@@ -26,6 +26,7 @@ class Config:
     ADDR = "addr"
     ALIST_USERNAME = "ALIST_USERNAME"
     ALIST_PASSWORD = "ALIST_PASSWORD"
+    USER_TIMEOUT = 'USER_TIMEOUT'
 
     setting = dict()
 
@@ -41,6 +42,7 @@ class Config:
         self.setting["USE_DOMAIN"] = 0
         self.setting["ALIST_USERNAME"] = ""
         self.setting["ALIST_PASSWORD"] = ""
+        self.setting["USER_TIMEOUT"] = None
 
         # self.print_config()
 
