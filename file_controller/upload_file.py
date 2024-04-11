@@ -15,9 +15,10 @@ import tqdm
 
 
 class Callback:
-    def __init__(self):
+    def __init__(self, file_path: str):
         self.pbar: Union[tqdm.tqdm, None] = None
         self.last_read = 0
+        self.file_path = file_path
 
     def __call__(self, monitor):
         if self.pbar is None:
@@ -28,18 +29,18 @@ class Callback:
                 unit_scale=True,
                 unit="b",
             )
-            self.pbar.set_description("文件上传进度")
+            self.pbar.set_description(f"{self.file_path}上传进度")
         if monitor.bytes_read - self.last_read != 0:
             self.pbar.update(monitor.bytes_read - self.last_read)
         self.last_read = monitor.bytes_read
 
     def __del__(self):
-        pass
-        # if not self.pbar:
-        #     self.pbar.close()
+        # pass
+        if not self.pbar:
+            self.pbar.close()
 
 
-def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_path: str):
+def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_path: str) -> int and str:
     """
     通过config配置上传文件
     :param file_root: 本地文件的根目录
@@ -47,8 +48,17 @@ def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_pat
     :param token: alist用户token
     :param alist_path: alist服务器的目标路径
     :param file_path: 文件路径;相对路径
-    :return:
+    :return: state:
+            # 0:成功
+            # 1：失败
+            # 2：重复
+            msg错误信息
     """
+
+    # test
+    # state = input('state:')
+    # msg = input('msg:')
+    # return int(state), msg
 
     url = addr + "/api/fs/form"
     file_abspath = os.path.abspath(os.path.join(file_root, file_path))
@@ -57,23 +67,26 @@ def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_pat
 
     if get_file(addr, token, alist_path, file_path):
         logging.warning("alist服务器上存在同路径同名文件")
+        return 2, None
     else:
         try:
             logging.info(f"开始上传文件{file_abspath}")
             with open(file_abspath, "rb") as file:
+                # 等待缓冲区信息输出
+                time.sleep(0.1)
                 e = requests_toolbelt.MultipartEncoder(
                     fields={"file": (file_name, file)}
                 )
                 m = requests_toolbelt.MultipartEncoderMonitor(
                     e,
-                    Callback(),
+                    Callback(file_path),
                 )
                 header = {
                     "Authorization": token,
                     "File-Path": f"{urllib.parse.quote(os.path.join(alist_path, file_path))}",
                     "Content-Type": m.content_type,
                     "Content-Length": str(os.path.getsize(file_abspath)),
-                    "As-Task": "true",
+                    # "As-Task": "true",
                 }
                 # file_controller.upload_file.finish = 0
                 res = requests.put(url=url, data=m, headers=header)
@@ -82,13 +95,16 @@ def upload_file(addr: str, token: str, alist_path: str, file_root: str, file_pat
 
             if res.json()["code"] == 200:
                 logging.info(f"文件上传成功{file_abspath}")
+                return 0, None
             else:
                 logging.warning(f"文件上传失败{file_abspath}")
                 logging.warning(res.json())
+                return 1, res.json()
 
         except Exception as e:
             logging.error("服务器失效")
             logging.error(e)
+            return 1, e
 
 
 def get_file(addr: str, token: str, alist_path: str, file_path: str):
@@ -126,7 +142,56 @@ def get_file(addr: str, token: str, alist_path: str, file_path: str):
         exit(1)
 
 
-def upload_files(addr: str, token: str, alist_path: str, file_root: str, files: []):
-    for file in files:
-        upload_file(addr, token, alist_path, file_root, file)
+def upload_files(addr: str, token: str, alist_path: str, file_root: str, files: [str]):
+    fail_list = []
+    fail_msg = []
+    repeat_list = []
+
+    while True:
+        for file in files:
+            status = None
+
+            status, msg = upload_file(addr, token, alist_path, file_root, file)
+
+            if status == 1:
+                fail_list.append(file)
+                fail_msg.append((file, msg))
+            elif status == 2:
+                repeat_list.append(file)
+            elif status == 0:
+                pass
+            else:
+                print(f'嗯？你怎么给我返回了一个我没定义的状态值？你有问题  state：{status}')
+
+        if len(repeat_list) != 0:
+            logging.info(f'本次运行出现的重复文件：')
+            for i in repeat_list:
+                logging.info(i)
+            logging.info('---------------------------------------------------------------')
+
+        if len(fail_list) != 0:
+            logging.info(f'上传失败文件：')
+            for file, msg in fail_msg:
+                logging.info(f'{file}:{msg}')
+            logging.info('---------------------------------------------------------------')
+
+        op = ''
+        if len(fail_list) == 0:
+            op = 'N'
+        while op != 'Y' and op != 'N':
+            op = input('输入Y尝试重新上传失败文件,输入N结束程序')
+
+            if op == 'y':
+                op = 'Y'
+            if op == 'n':
+                op = 'N'
+
+        if op == 'N':
+            break
+        if op == 'Y':
+            files = fail_list.copy()
+            fail_msg.clear()
+            fail_list.clear()
+            logging.debug(files)
+
     return
