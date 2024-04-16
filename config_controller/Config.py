@@ -1,10 +1,12 @@
 import logging
+import os.path
 import sys
+import yaml
 from importlib import import_module
 
 import requests
 
-from config.config_check import check_alist_addr, check_token
+from config_controller.config_check import check_alist_addr, check_token
 
 logger = logging.getLogger(__name__)
 
@@ -46,22 +48,94 @@ class Config:
 
         # self.print_config()
 
-    def get_config_by_settings(self):
-        """
-        读取settings.py
-        :return:
-        """
+    def __get_by_yaml(self, path: str):
         try:
-            module = import_module("test_settings")
+            file = open(path, 'rb')
+            config = yaml.safe_load(file)
         except Exception as e:
             logger.error(e)
-            module = import_module("settings")
+            return False
+
+        for key, val in config.items():
+            if key.isupper():
+                self.setting[key] = val
+
+        return True
+
+    def __get_by_py(self, path: str):
+        abspath = os.path.abspath(path)
+        module_dir = os.path.dirname(abspath)
+        if module_dir not in sys.path:
+            sys.path.append(module_dir)
+        file_name = os.path.basename(abspath)
+        logger.debug(module_dir)
+
+        module_name = file_name.split(".")[0]
+        try:
+            logger.debug(module_name)
+
+            module = import_module(module_name)
+            # module = import_module('configs.test_settings', package='autoPutPathtoAlist')
+        except Exception as e:
+            logger.error(e)
+            return False
+
         for key in dir(module):
             if key.isupper():
                 self.setting[key] = getattr(module, key)
 
+        return True
+
+    def get_by_file(self, path: str):
+        config_type = os.path.splitext(path)[-1]
+        res = ''
+        if config_type == ".yaml":
+            res = self.__get_by_yaml(path)
+        elif config_type == '.py':
+            res = self.__get_by_py(path)
+        else:
+            logger.error("未知类型的配置文件")
+            res = False
+
         self.config_check()
-        # self.print_config()
+        return res
+
+    def _get_config_by_settings(self, path: str):
+        """
+        读取settings.yaml
+        :return:
+        """
+        config_type = os.path.splitext(path)[-1]
+        if config_type == '.yaml':
+            config = ''
+            try:
+                file = open(path, 'rb')
+                config = yaml.safe_load(file)
+            except Exception as e:
+                logger.error(e)
+
+            for key, val in config.items():
+                if key.isupper():
+                    self.setting[key] = val
+
+            # self.print_config()
+        elif config_type == '.py':
+            name = os.path.split(path)
+            module = ''
+            try:
+                module = os.path.splitext(name[0])
+            except Exception as e:
+                logger.error(e)
+
+            for key in dir(module):
+                if key.isupper():
+                    self.setting[key] = getattr(module, key)
+        else:
+            logger.error("未知的配置文件类型")
+            logger.debug(config_type)
+            return False
+        self.config_check()
+        return True
 
     def print_config(self):
         """

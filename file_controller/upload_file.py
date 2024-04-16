@@ -10,6 +10,8 @@ import requests
 import requests_toolbelt
 import tqdm
 
+from file_controller.get_file import get_file
+
 
 # def foo(a) :
 
@@ -119,41 +121,6 @@ def upload_file(
             return 1, e
 
 
-def get_file(addr: str, token: str, alist_path: str, file_path: str):
-    """
-    查询alist服务器在该路径下是否有这个文件
-    :param alist_path: alist服务器的目录
-    :param addr: http://服务器地址:端口
-    :param token: alist的用户token
-    :param file_path: 服务器上的文件相对路径
-    :return: 是否查询到
-    """
-    url = addr + "/api/fs/get"
-    path = os.path.join(alist_path, file_path)
-    logging.debug(alist_path)
-    logging.debug(file_path)
-    logging.debug(f"path:{path}")
-
-    header = {"Authorization": token}
-    body = {"path": path}
-
-    try:
-        res = requests.post(url=url, json=body, headers=header)
-        if res.json()["code"] == 500:
-            logging.warning(f"未能在alist服务器上查询到文件{path}")
-            return False
-        elif res.json()["code"] == 200:
-            logging.info(f"成功查询到文件{path}")
-            return True
-        else:
-            logging.error("查询alist服务器文件时出现预期外错误")
-            exit(1)
-    except Exception as e:
-        logging.error("查询alist服务器文件时服务器响应超时")
-        logging.error(e)
-        exit(1)
-
-
 def upload_files(
         addr: str,
         token: str,
@@ -191,59 +158,3 @@ def upload_files(
             )
 
     return fail_list, fail_msg, repeat_list
-
-
-def contorller(
-        addr: str,
-        token: str,
-        alist_path: str,
-        file_root: str,
-        files: [str],
-        user_timeout: int,
-):
-    while True:
-
-        fail_list, fail_msg, repeat_list = upload_files(addr, token, alist_path, file_root, files, user_timeout)
-
-        if len(repeat_list) != 0:
-            logging.info(f"重复的文件：")
-            for i in repeat_list:
-                logging.info(i)
-            logging.info(
-                "---------------------------------------------------------------"
-            )
-
-        if len(fail_list) != 0:
-            logging.info(f"上传失败文件：")
-            for file, msg in fail_msg:
-                logging.info(f"{file}:{msg}")
-            logging.info(
-                "---------------------------------------------------------------"
-            )
-
-        op = ""
-        if len(fail_list) == 0:
-            op = "N"
-        while op != "Y" and op != "N":
-            op = input("输入Y尝试重新上传失败文件,输入N结束程序，输入S设置超时时间")
-            logging.debug(op)
-
-            if op == "y":
-                op = "Y"
-            if op == "n":
-                op = "N"
-            if op == 'S' or op == 's':
-                user_timeout = int(input('(设置为-1，不会超时自动停止传输)超时时间：'))
-                if user_timeout == -1:
-                    user_timeout = None
-                op = ''
-
-        if op == "N":
-            break
-        if op == "Y":
-            files = fail_list.copy()
-            fail_msg.clear()
-            fail_list.clear()
-            logging.debug(files)
-
-    return
