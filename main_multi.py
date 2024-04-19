@@ -5,9 +5,9 @@ import logging
 import sys
 
 import main
+from util.logging_init import logging_init
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level=logging.INFO, stream=sys.stdout)
 
 
 def search_config() -> []:
@@ -39,5 +39,5 @@ def main_multi():
 
 
 if __name__ == '__main__':
-    logger.debug(__package__)
+    logging_init()
     main_multi()

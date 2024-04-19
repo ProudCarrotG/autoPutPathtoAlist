@@ -24,7 +24,7 @@ def main(path: str):
     config = Config()
     # config.get_config_by_settings(path)
     config.get_by_file(path)
-    logger.error(path)
+    # logger.error(path)
 
     files = traverse_files_path(config[config.FILES_PATH])
     logging.debug(config[config.FILES_PATH])
