@@ -1,5 +1,4 @@
 import logging
-import sys
 from time import time
 
 import requests
@@ -11,6 +10,8 @@ logger = logging.getLogger(__name__)
 def check_alist_addr(addr: str):
     payload = ''
     headers = {}
+
+
 
     try:
         start_time = time()

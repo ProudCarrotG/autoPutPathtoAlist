@@ -18,5 +18,5 @@ class File:
 
 
 if __name__ == '__main__':
-    file = File(f=open('..\\settings.py', 'rb'))
-    print(dir(open('..\\settings.py', 'rb')))
+    file = File(f=open('../configs/settings.py', 'rb'))
+    print(dir(open('../configs/settings.py', 'rb')))
