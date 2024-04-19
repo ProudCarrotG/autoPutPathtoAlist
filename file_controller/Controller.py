@@ -1,19 +1,23 @@
 import logging
 
+import config_controller.name
+import file_controller
 from file_controller.upload_file import upload_files
 
 
 def Controller(
-        addr: str,
-        token: str,
-        alist_path: str,
-        file_root: str,
-        files: [str],
-        user_timeout: int,
+        # addr: str,
+        # token: str,
+        # alist_path: str,
+        # file_root: str,
+        # files: [str],
+        # user_timeout: int,
+        config: dict
 ):
     while True:
 
-        fail_list, fail_msg, repeat_list = upload_files(addr, token, alist_path, file_root, files, user_timeout)
+        # fail_list, fail_msg, repeat_list = upload_files(addr, token, alist_path, file_root, files, user_timeout)
+        fail_list, fail_msg, repeat_list = upload_files(config)
 
         if len(repeat_list) != 0:
             logging.info(f"重复的文件：")

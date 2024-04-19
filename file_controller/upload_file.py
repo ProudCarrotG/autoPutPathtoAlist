@@ -10,6 +10,7 @@ import requests
 import requests_toolbelt
 import tqdm
 
+from config_controller import name
 from file_controller.get_file import get_file
 
 
@@ -43,12 +44,13 @@ class Callback:
 
 
 def upload_file(
-        addr: str,
-        token: str,
-        alist_path: str,
-        file_root: str,
+        # addr: str,
+        # token: str,
+        # alist_path: str,
+        # file_root: str,
         file_path: str,
-        user_timeout: int,
+        # user_timeout: int,
+        config: dict
 ) -> int and str:
     """
     通过config配置上传文件
@@ -65,6 +67,13 @@ def upload_file(
             msg错误信息
     """
 
+    addr = config[name.ADDR]
+    token = config[name.ALIST_TOKEN]
+    alist_path = config[name.ALIST_PATH]
+    file_root = config[name.FILES_PATH]
+    file_path = file_path
+    user_timeout = config[name.USER_TIMEOUT]
+
     # test
     # state = input('state:')
     # msg = input('msg:')
@@ -78,6 +87,7 @@ def upload_file(
 
     if get_file(addr, token, alist_path, file_path):
         logging.warning("alist服务器上存在同路径同名文件")
+        # conflict_state = confilict_controller()
         return 2, None
     else:
         try:
@@ -122,27 +132,29 @@ def upload_file(
 
 
 def upload_files(
-        addr: str,
-        token: str,
-        alist_path: str,
-        file_root: str,
-        files: [str],
-        user_timeout: int,
+        # addr: str,
+        # token: str,
+        # alist_path: str,
+        # file_root: str,
+        # files: [str],
+        # user_timeout: int,
+        config: dict
 ):
     fail_list = []
     fail_msg = []
     repeat_list = []
 
-    for file in files:
+    for file in config[name.files]:
         status = None
 
         status, msg = upload_file(
-            addr=addr,
-            token=token,
-            alist_path=alist_path,
-            file_root=file_root,
+            # addr=config[name.ADDR],
+            # token=config[name.ALIST_TOKEN],
+            # alist_path=config[name.ALIST_PATH],
+            # file_root=config[name.FILES_PATH],
             file_path=file,
-            user_timeout=user_timeout,
+            # user_timeout=config[name.USER_TIMEOUT],
+            config=config
         )
 
         if status == 1:

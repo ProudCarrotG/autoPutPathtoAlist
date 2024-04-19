@@ -32,7 +32,10 @@ def main_multi():
     logger.info('输入使用的配置文件编号; 输入-1依次运行所有配置文件')
     op = int(input('编号:'))
     if op != -1:
-        main.main(config_list[op])
+        if len(config_list) > op >= 0:
+            main.main(config_list[op])
+        else:
+            logger.error('不存在的配置编号')
     else:
         for config in config_list:
             main.main(config)

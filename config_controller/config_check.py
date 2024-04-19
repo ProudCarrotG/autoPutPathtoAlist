@@ -11,8 +11,6 @@ def check_alist_addr(addr: str):
     payload = ''
     headers = {}
 
-
-
     try:
         start_time = time()
         res = requests.get(addr + '/ping', headers=headers)

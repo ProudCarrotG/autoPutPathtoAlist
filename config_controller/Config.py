@@ -6,6 +6,7 @@ from importlib import import_module
 
 import requests
 
+from config_controller import name
 from config_controller.config_check import check_alist_addr, check_token
 
 logger = logging.getLogger(__name__)
@@ -16,19 +17,6 @@ class Config:
     """
     设置类
     """
-
-    FILES_PATH = "FILES_PATH"
-    ALIST_SERVER = "ALIST_SERVER"
-    ALIST_PORT = "ALIST_PORT"
-    ALIST_PATH = "ALIST_PATH"
-    ALIST_TOKEN = "ALIST_TOKEN"
-    ALIST_DOMAIN = "ALIST_DOMAIN"
-    ALIST_HTTPS = "ALIST_HTTPS"
-    USE_DOMAIN = "USE_DOMAIN"
-    ADDR = "addr"
-    ALIST_USERNAME = "ALIST_USERNAME"
-    ALIST_PASSWORD = "ALIST_PASSWORD"
-    USER_TIMEOUT = 'USER_TIMEOUT'
 
     setting = dict()
 
@@ -45,6 +33,9 @@ class Config:
         self.setting["ALIST_USERNAME"] = ""
         self.setting["ALIST_PASSWORD"] = ""
         self.setting["USER_TIMEOUT"] = None
+        self.setting['CONFLICT_SOLUTION'] = 0
+        self.setting['files'] = []
+        self.setting['addr'] = self.get_addr()
 
         # self.print_config()
 
@@ -178,7 +169,7 @@ class Config:
         :return: string添加好协议头的地址
         """
         if "://" not in addr:
-            if self[Config.ALIST_HTTPS] == 0:
+            if self[name.ALIST_HTTPS] == 0:
                 return "http://" + addr
             else:
                 return "https://" + addr
@@ -190,11 +181,11 @@ class Config:
         检测当前配置是否正确
         :return:
         """
-        check_alist_addr(self[self.ADDR])
+        check_alist_addr(self[name.ADDR])
 
-        if self[self.ALIST_TOKEN] == "" and self[self.ALIST_USERNAME] != '':
+        if self[name.ALIST_TOKEN] == "" and self[name.ALIST_USERNAME] != '':
             self.alist_login()
-        check_token(self.get_addr(), self[self.ALIST_TOKEN])
+        check_token(self.get_addr(), self[name.ALIST_TOKEN])
 
     def alist_login(self):
         """
@@ -202,8 +193,8 @@ class Config:
         :return:
         """
         addr = self.get_addr()
-        username = self[self.ALIST_USERNAME]
-        password = self[self.ALIST_PASSWORD]
+        username = self[name.ALIST_USERNAME]
+        password = self[name.ALIST_PASSWORD]
 
         logger.debug(username)
         logger.debug(password)
@@ -228,5 +219,8 @@ class Config:
             logger.info("出现此条信息时，请检查服务器域名最后有没有多余的'/'")
             sys.exit(404)
 
-        self[self.ALIST_TOKEN] = res.json()["data"]["token"]
-        logger.info(f"token:{self[self.ALIST_TOKEN]}")
+        self[name.ALIST_TOKEN] = res.json()["data"]["token"]
+        logger.info(f"token:{self[name.ALIST_TOKEN]}")
+
+    def get_setting(self) -> dict:
+        return self.setting

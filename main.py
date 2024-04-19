@@ -2,6 +2,7 @@ import json
 import sys
 import logging, coloredlogs
 
+from config_controller import name
 from config_controller.Config import Config
 from file_controller.Controller import Controller
 from file_controller.traverse_files_path import traverse_files_path
@@ -26,16 +27,19 @@ def main(path: str):
     config.get_by_file(path)
     # logger.error(path)
 
-    files = traverse_files_path(config[config.FILES_PATH])
-    logging.debug(config[config.FILES_PATH])
-    Controller(
-        addr=config.get_addr(),
-        token=config[config.ALIST_TOKEN],
-        alist_path=config[config.ALIST_PATH],
-        file_root=config[config.FILES_PATH],
-        files=files,
-        user_timeout=config[config.USER_TIMEOUT],
-    )
+    # files = traverse_files_path(config[config.FILES_PATH])
+    config[name.files] = traverse_files_path(config[name.FILES_PATH])
+    logging.debug(config[name.FILES_PATH])
+    # Controller(
+    #     addr=config.get_addr(),
+    #     token=config[config.ALIST_TOKEN],
+    #     alist_path=config[config.ALIST_PATH],
+    #     file_root=config[config.FILES_PATH],
+    #     files=files,
+    #     user_timeout=config[config.USER_TIMEOUT],
+    # )
+
+    Controller(config.get_setting())
 
 
 if __name__ == "__main__":
